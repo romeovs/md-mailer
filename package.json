@@ -1,6 +1,6 @@
 {
   "name": "md-mailer",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Send markdown emails from your command line.",
   "main": "build/index.js",
   "bin": {
@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "babel-runtime": "^6.3.19",
     "emailjs": "^1.0.1",
     "front-matter": "^2.0.5",
     "html-to-text": "^1.5.1",
