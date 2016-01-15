@@ -1,0 +1,20 @@
+{
+  "name": "md-mailer",
+  "version": "0.0.1",
+  "description": "Send markdown emails from your command line.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "emailjs": "^1.0.1",
+    "html-to-text": "^1.5.1"
+  },
+  "devDependencies": {
+    "babel-preset-all": "github:romeovs/babel-preset-all",
+    "front-matter": "^2.0.5",
+    "markdown-it": "^5.1.0"
+  }
+}
