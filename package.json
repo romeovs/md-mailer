@@ -2,9 +2,10 @@
   "name": "md-mailer",
   "version": "0.0.1",
   "description": "Send markdown emails from your command line.",
-  "main": "index.js",
+  "main": "build/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "compile": "babel -d build/ src/",
+    "prepublish": "npm run compile"
   },
   "author": "",
   "license": "ISC",
