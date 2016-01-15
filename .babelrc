@@ -1,3 +1,6 @@
 {
-  "presets": ["all"]
+  "presets": ["all"],
+  "plugins": [
+    "transform-runtime"
+  ]
 }
