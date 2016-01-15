@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "Send markdown emails from your command line.",
   "main": "build/index.js",
+  "bin": {
+    "md-mailer": "build/index.js"
+  },
   "scripts": {
     "compile": "babel -d build/ src/",
     "prepublish": "npm run compile"

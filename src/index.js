@@ -1,4 +1,4 @@
-#!/usr/local/bin/babel-node
+#! /usr/bin/env node
 import yargs from 'yargs'
 import email from 'emailjs'
 import read  from './lib/read'
