@@ -11,11 +11,12 @@
   "license": "ISC",
   "dependencies": {
     "emailjs": "^1.0.1",
-    "html-to-text": "^1.5.1"
+    "front-matter": "^2.0.5",
+    "html-to-text": "^1.5.1",
+    "markdown-it": "^5.1.0",
+    "yargs": "^3.31.0"
   },
   "devDependencies": {
-    "babel-preset-all": "github:romeovs/babel-preset-all",
-    "front-matter": "^2.0.5",
-    "markdown-it": "^5.1.0"
+    "babel-preset-all": "github:romeovs/babel-preset-all"
   }
 }
