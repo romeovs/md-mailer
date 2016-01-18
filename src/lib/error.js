@@ -4,7 +4,7 @@ const error = function (err, top = true) {
     console.error('Something went wrong:')
   }
 
-  console.error("  " + err.message)
+  console.error(err.message)
 
   // descend the error chain
   if ( err.previous ) {
