@@ -6,6 +6,7 @@ export default function (markdown) {
   const html = marked(markdown);
   const text = totext.fromString(html, {
     wordwrap: 130
+  , hideLinkHrefIfSameAsText: true
   });
 
   return text;
