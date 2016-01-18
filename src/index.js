@@ -1,8 +1,7 @@
 #! /usr/bin/env node
 import yargs from 'yargs'
-import email from 'emailjs'
-import read  from './lib/read'
 import mail  from './lib/mail'
+import read  from './lib/read'
 import error from './lib/error'
 
 // environment variable name to use for password
@@ -59,23 +58,30 @@ const validate = async function (options) {
     throw new Error(`Missing required argument: pass\nset it trough the --pass option or via $${PASS}.`);
   }
 
-  return options;
+  return {
+    host:   options.host
+  , secure: options.ssl
+  // , port : // todo
+  , auth: {
+      user: options.user
+    , pass: options.pass
+    }
+  , files: options._
+  };
 };
 
 validate(argv)
   .then(async function (options) {
-    const files = options._;
+    const { files } = options;
     return [options, await Promise.all(files.map(read))];
   })
   .then(async function ([options, messages]) {
-    const server = email.server.connect(options);
-
     const sent = messages.map(function (message) {
       if ( options.dryRun === true ) {
         console.log(message);
         return message;
       } else {
-        return mail(server, message);
+        return mail(options, message);
       }
     });
 

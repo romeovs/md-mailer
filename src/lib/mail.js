@@ -1,12 +1,24 @@
-import email from 'emailjs'
+import mailer       from 'nodemailer'
+import { markdown } from 'nodemailer-markdown'
 
-export default function (server, message) {
+let transporter;
+
+export default function (config, message) {
+
+  // set up transporter on first use
+  if ( !transporter ) {
+    transporter = mailer.createTransport(config);
+    transporter.use('compile', markdown({
+      useEmbeddedImages: true
+    }));
+  }
+
   return new Promise(function (resolve, reject) {
-    server.send(message, function (err, message) {
+    transporter.sendMail(message, function (err, info) {
       if (err) {
         reject(err);
       } else {
-        resolve(err);
+        resolve(info);
       }
     });
   });

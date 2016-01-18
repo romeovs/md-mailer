@@ -1,16 +1,6 @@
 import frontmatter from 'front-matter'
-import markdown    from 'markdown-it'
 import fs          from 'fs'
-import totext      from 'html-to-text'
-import attachments from './attachment'
-
-const md = markdown({
-  html:     true
-, linkify:  true
-, breaks:   true
-})
-.use(attachments);
-  // .disable(['link', 'image'])
+import text        from './text'
 
 const read = function (filename) {
   return new Promise (function (resolve, reject) {
@@ -54,7 +44,6 @@ const replace = async function (env, str) {
 };
 
 export default async function (filename) {
-
   const contents = await read(filename);
   const replaced = await replace(process.env, contents)
 
@@ -63,22 +52,9 @@ export default async function (filename) {
   , body
   } = frontmatter(replaced);
 
-  let env = {};
-  const html = md.render(body, env);
-  const text = totext.fromString(html, { wordwrap: 100 });
-
-  const atts = (env.attachments || []).map(function (path) {
-    console.log('Attaching:', path);
-    return { path, name: path, alternative: false };
-  });
-
   return {
     ...attributes
-  , text
-  , attachment: [
-      {data: html, alternative: true}
-    , ...atts
-    ]
-  }
-
+  , markdown: body
+  // , text: totext(body)
+  };
 };
