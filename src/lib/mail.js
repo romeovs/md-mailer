@@ -13,13 +13,18 @@ export default function (config, message) {
     }));
   }
 
-  return new Promise(function (resolve, reject) {
-    transporter.sendMail(message, function (err, info) {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(info);
-      }
+  if ( config.dryRun ) {
+    console.log(message)
+    return Promise.resolve();
+  } else {
+    return new Promise(function (resolve, reject) {
+      transporter.sendMail(message, function (err, info) {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(info);
+        }
+      });
     });
-  });
+  }
 };
