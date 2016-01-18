@@ -55,6 +55,6 @@ export default async function (filename) {
   return {
     ...attributes
   , markdown: body
-  // , text: totext(body)
+  , text: text(body)
   };
 };
