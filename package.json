@@ -14,10 +14,11 @@
   "license": "ISC",
   "dependencies": {
     "babel-runtime": "^6.3.19",
-    "emailjs": "^1.0.1",
     "front-matter": "^2.0.5",
     "html-to-text": "^1.5.1",
-    "markdown-it": "^5.1.0",
+    "marked": "^0.3.5",
+    "nodemailer": "^2.0.0",
+    "nodemailer-markdown": "^1.0.0",
     "yargs": "^3.31.0"
   },
   "devDependencies": {
