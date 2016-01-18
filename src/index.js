@@ -27,9 +27,14 @@ const argv =
     // check for pass
     .describe('p', `Email provider password. (This might be unsafe, consider using the environment variable $${PASS}).`)
     .nargs('pass', 1)
-    .default('pass', process.env[PASS])
+    // .default('pass', process.env[PASS])
     .alias('p', 'pass')
     .alias('p', 'password')
+
+    // check for port
+    .describe('P', 'Port to be used.')
+    .alias('P', 'port')
+    .nargs('port', 1)
 
     // wether or not to use ssl
     .describe('s', 'Enable ssl.')
@@ -54,17 +59,26 @@ const validate = async function (options) {
     throw new Error(`Missing required argument: user\nset it trough the --user option or via $${USER}.`);
   }
 
+  let pass;
   if ( !options.pass ) {
-    throw new Error(`Missing required argument: pass\nset it trough the --pass option or via $${PASS}.`);
+    // lookup pass in env
+    if (process.env[PASS] ) {
+      pass = process.env[PASS];
+    } else {
+      throw new Error(`Missing required argument: pass\nset it trough the --pass option or via $${PASS}.`);
+    }
+  } else {
+    console.log(`Warning: using the pass command line argument may be dangerous, consider using the $${PASS} enviroment variable.`);
+    pass = options.pass;
   }
 
   return {
     host:   options.host
   , secure: options.ssl
-  // , port : // todo
+  , port :  options.port
   , auth: {
       user: options.user
-    , pass: options.pass
+    , pass
     }
   , files: options._
   };
