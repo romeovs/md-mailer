@@ -1,6 +1,6 @@
 {
   "name": "md-mailer",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Send markdown emails from your command line.",
   "main": "build/index.js",
   "bin": {
