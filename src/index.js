@@ -3,6 +3,7 @@ import yargs from 'yargs'
 import email from 'emailjs'
 import read  from './lib/read'
 import mail  from './lib/mail'
+import error from './lib/error'
 
 // environment variable name to use for password
 const USER = 'EMAILER_USER';
@@ -49,7 +50,6 @@ const argv =
     .argv
     ;
 
-
 const validate = async function (options) {
   if ( !options.user ) {
     throw new Error(`Missing required argument: user\nset it trough the --user option or via $${USER}.`);
@@ -84,11 +84,7 @@ validate(argv)
   .then(function (sent) {
     console.log(`sent ${sent.length} messages`);
   })
-  .catch(function (err) {
-    console.error('Something went wrong:')
-    console.error(err.message)
-    process.exit(1);
-  });
+  .catch(error)
   ;
 
 
