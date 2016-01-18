@@ -1,24 +1,10 @@
-import yargs from 'yargs'
+import yargs    from 'yargs'
+import validate from './validate'
 
 // environment variable name to use for password
 const prefix = 'MDMAILER_';
 const USER = `${prefix}USER`;
 const PASS = `${prefix}PASS`;
-
-const validate = async function (options) {
-  return {
-    host:   options.host
-  , secure: options.ssl
-  , port :  options.port
-  , auth: {
-      user: options.user
-    , pass: options.pass
-    }
-  , files: options._
-  , dryRun: options.dryRun
-  };
-};
-
 
 export default function () {
   const argv =
@@ -70,6 +56,6 @@ export default function () {
       .argv
       ;
 
-  return validate(argv);
+  return argv;
 };
 
