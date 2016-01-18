@@ -37,24 +37,26 @@ To send the email, invoke `md-mailer`:
     md-mailer -u <user> -h <host> -p <pass> --ssl file.md
 
 ## Options
+These can be passed as command line arguments, or as environment variables.
 
-#### `-h`, `--host`, `$MDMAILER_HOST`
+
+#### `-h`, `--host`, `$MDMAILER_HOST`, `option.host`
 The hostname of the mail server to use. (Example: `smtp.gmail.com`).
 
-#### `-P`, `--port`, `$MDMAILER_PORT`
+#### `-P`, `--port`, `$MDMAILER_PORT`, `options.port`
 The port of the mail server.
 
-#### `-u`, `--user`, `$MDMAILER_USER`
+#### `-u`, `--user`, `$MDMAILER_USER`, `options.user`
 The username of the account that should be used at the mail provider.
 
-#### `-p`, `--pass`, `$MDMAILER_PASS`
+#### `-p`, `--pass`, `$MDMAILER_PASS`, `options.pass`
 The password of the account that should be used at the mail provider.
 
 *Note:* using the command line arguments like this might be unsafe,
 because the password will be stored cleatext in your shell history.
 Prefer setting the environment variable `$MDMAILER_PASS`.
 
-#### `--ssl`
+#### `--ssl`, `options.ssl`
 If present, `md-mailer` uses SSL.
 
 #### `-d`, `--dry-run`
@@ -89,5 +91,18 @@ used in `to` is also valid here.
 
 ### `subject`
 The subject of the message.
+
+
+## Node API
+You can also use the api from node:
+
+    import mdmailer from 'md-mailer'
+    mdmailer({
+      user: 'example'
+    , pass: '12345'
+    , host: 'smtp.gmail.com'
+    , ssl: true
+    , files: ['email1.md', 'email2.md' ]
+    });
 
 
