@@ -6,7 +6,7 @@ const prefix = 'MDMAILER_';
 const USER = `${prefix}USER`;
 const PASS = `${prefix}PASS`;
 
-export default function () {
+export default async function () {
   const argv =
     yargs
       .env(prefix)

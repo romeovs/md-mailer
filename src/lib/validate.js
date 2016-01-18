@@ -1,7 +1,7 @@
 
 // transform options for use in the rest of the
 // program.
-export default async function (options = {}) {
+export default function (options = {}) {
   return {
     host:   options.host
   , secure: options.ssl

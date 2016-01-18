@@ -1,5 +1,6 @@
-import mail   from './lib/mail'
-import read   from './lib/read'
+import mail     from './lib/mail'
+import read     from './lib/read'
+import validate from './lib/validate'
 
 export default function (opts) {
   const options   = validate(opts);
